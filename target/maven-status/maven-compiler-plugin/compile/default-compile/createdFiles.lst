@@ -1,0 +1,6 @@
+com\inetBanking\qa\pages\AddCustomerPage.class
+com\inetBanking\qa\utils\Reporting.class
+com\inetBanking\qa\pages\LoginPage.class
+com\inetBanking\qa\utils\ReadConfig.class
+com\inetBanking\qa\utils\XLUtils.class
+com\inetBanking\qa\Base\TestBase.class

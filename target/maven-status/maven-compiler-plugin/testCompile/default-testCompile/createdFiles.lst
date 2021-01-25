@@ -1,0 +1,3 @@
+com\inetBanking\qa\Testcases\TC_LoginTest.class
+com\inetBanking\qa\Testcases\AddCustomerTest.class
+com\inetBanking\qa\Testcases\TC_LoginDDT.class
