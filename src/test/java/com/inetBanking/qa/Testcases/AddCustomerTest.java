@@ -31,25 +31,25 @@ public class AddCustomerTest extends TestBase {
 		acp.custcity("HYD");
 		acp.custstate("AP");
 		acp.custpinno("500074");
-		acp.custtelephoneno("9876543210");
-
+		String mobile = randomeNum();
+		acp.custtelephoneno(mobile);
+		Thread.sleep(5000);
 		String email = randomestring() + "@gmail.com";
 		acp.custemailid(email);
 		acp.custpassword("abcdef");
 		acp.custsubmit();
-		
+
 		Thread.sleep(5000);
-		
+
 		boolean result = driver.getPageSource().contains("Customer Registered Successfully!!!");
-		if(result == true) {
+		if (result == true) {
 			logger.info("test case passed....");
 			Assert.assertTrue(true);
-		}else {
+		} else {
 			logger.info("test case failed....");
 			captureScreen(driver, "addNewCustomer");
 			Assert.assertTrue(false);
 		}
 	}
-
 
 }

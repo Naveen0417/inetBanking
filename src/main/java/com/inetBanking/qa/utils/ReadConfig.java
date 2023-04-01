@@ -44,4 +44,5 @@ public class ReadConfig {
 		String firefoxPath = prop.getProperty("firefoxPath");
 		return firefoxPath;
 	}
+
 }
