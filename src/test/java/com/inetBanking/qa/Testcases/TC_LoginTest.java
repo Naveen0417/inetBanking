@@ -13,8 +13,6 @@ public class TC_LoginTest extends TestBase {
 	@Test
 	public void loginTest() throws IOException {
 
-		
-
 		LoginPage login = new LoginPage(driver);
 
 		login.SetUserName(UserName);
@@ -28,7 +26,7 @@ public class TC_LoginTest extends TestBase {
 			Assert.assertTrue(true);
 			logger.info("login Test passed");
 		} else {
-			captureScreen( driver,"LoginTest");
+			captureScreen(driver, "LoginTest");
 			Assert.assertTrue(false);
 			logger.info("login Test failed");
 		}

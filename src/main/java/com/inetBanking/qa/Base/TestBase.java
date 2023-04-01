@@ -12,12 +12,17 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
 import com.inetBanking.qa.utils.ReadConfig;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBase {
 
@@ -35,11 +40,20 @@ public class TestBase {
 		logger = Logger.getLogger("Ebanking");
 		PropertyConfigurator.configure("log4j.properties");
 		if (browserName.equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver", readconfig.getChromeDriverPath());
-			driver = new ChromeDriver();
+		//	System.getProperty("webdriver.chrome.driver", readconfig.getChromeDriverPath());
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();			
+			options.addArguments("headless");
+			driver = new ChromeDriver(options);
+
 		} else if (browserName.equals("firefox")) {
-			System.setProperty("webdriver.gecko.driver", readconfig.getFirefoxDriverPath());
-			driver = new FirefoxDriver();
+			FirefoxBinary firefoxBinary = new FirefoxBinary();
+			firefoxBinary.addCommandLineOptions("--headless");
+		//	System.setProperty("webdriver.gecko.driver", readconfig.getFirefoxDriverPath());
+			WebDriverManager.firefoxdriver().setup();
+			FirefoxOptions options = new FirefoxOptions();
+			options.setBinary(firefoxBinary);
+			driver = new FirefoxDriver(options);
 		}
 		driver.get(Baseurl);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -58,6 +72,7 @@ public class TestBase {
 		FileUtils.copyFile(source, target);
 		System.out.println("Screenshot taken");
 	}
+
 	public String randomestring() {
 		String genaratedString = RandomStringUtils.randomAlphabetic(5);
 		return genaratedString;
